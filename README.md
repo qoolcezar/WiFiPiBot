@@ -31,11 +31,11 @@ Follow these steps to configure your Windows machine using a clean Conda environ
    ```bash
    python controller.py
    ```
-6. **Final configurations** :
-`TODO a config file`
-- In the `netgear_options` dictionary, enter the PC's IP address to which the Raspberry Pi robot should connect.
-- In the `GPIO_setups` dictionary, update the entries with your specific setup.
-- In the `GPIO_ctrls` dictionary, update the entries with your specific setup.
+6. **Final configurations** :  
+   Config the `configs.json` file.
+- In the `netgear_options`, enter the PC's IP address to which the Raspberry Pi robot should connect.
+- In the `GPIO_setups` - GPIO configs of the RaspberryPi robot, update the entries with your specific setup.
+- In the `controls_GPIO` - controller to GPIO mapping , update the entries with your specific setup.
 
 
 ### RaspberryPi configurtation
@@ -100,7 +100,9 @@ For x86 Bookworm and Legacy/Bullseye, see below!
     ```
 
 7. **Final Configurations**   
-  In the `TODO a config file` dictionary, enter the PC's IP address to which the Raspberry Pi robot should connect.
+   Config the `config.json` file.
+- In the `netgear_options`, enter the PC's IP address to which the Raspberry Pi robot should connect.
+- In the `camera_config`, enter the desired resolution size.
   
 ***For x86 Bookworm***
 ```bash
@@ -121,7 +123,7 @@ pip install --upgrade numpy
 ## Usage
 
 1. Start DS4Windows and connect controller to it
-2. Start the robo_client.py from PC `TODO change the name to server`
-3. Start the robo_servo.py from Raspberry `TODO change the name to client`
+2. Start the robo_server.py from PC
+3. Start the robo_client.py from RaspberryPi
 
 ENJOY!
