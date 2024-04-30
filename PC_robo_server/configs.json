@@ -1,0 +1,92 @@
+{
+    "netgear_options": {
+        "_description": "enter address and port to server",
+        "address": "A.B.C.D",
+        "port": "58954",
+        "protocol": "tcp",
+        "receive_mode": true,
+        "logging": true,
+        "bidirectional_mode": true
+    },
+
+    "GPIO_setups" : {
+        "servo_horizontal": {
+            "mode" : "Servo",
+            "config_kwargs": {"pin": 24, "initial_value": 0, "min_pulse_width":0.001, "max_pulse_width":0.0025, "pigiofactory":true}
+        },
+        "servo_vertical": {
+            "mode" : "Servo",
+            "config_kwargs": {"pin": 23, "initial_value": 0, "min_pulse_width":0.001, "max_pulse_width":0.0021, "pigiofactory":true}
+        },
+        "led_blue": {
+            "mode" : "OutputDevice",
+            "config_kwargs": {"pin": 16, "initial_value": 0, "pigiofactory":true}
+        },
+        "led_red": {
+            "mode" : "OutputDevice",
+            "config_kwargs": {"pin": 20, "initial_value": 1, "pigiofactory":true}
+        },
+        "wheels_Left": {
+            "mode" : "L298N_Motor",
+            "config_kwargs": {"forward_pin":13, "backward_pin":19, "enable_pin":26, "pigiofactory":true}
+        },
+        "wheels_Right": {
+            "mode" : "L298N_Motor",
+            "config_kwargs": {"forward_pin":6, "backward_pin":5, "enable_pin":21, "pigiofactory":true}
+        }
+    },
+
+    "controls_GPIO" : {
+        "Absolute-ABS_RX": {
+            "ctrl_range": {"min": -32768,
+                        "max": 32768},
+            "return_name" : "servo_horizontal",
+            "description": "not continous servo motor with range from 0 to 180 degrees",
+            "output_range": {"min": 1,
+                            "max": -1},
+            "used_funct": "normalization_func"
+        },
+        "Absolute-ABS_RY": {
+            "ctrl_range": {"min": -32768,
+                        "max": 32768},
+            "return_name" : "servo_vertical",
+            "description": "not continous servo motor with range from 0 to 180 degrees",
+            "output_range": {"min": -1,
+                            "max": 1},
+            "used_funct": "normalization_func"
+        },
+        "Key-BTN_WEST": {
+            "return_name" : "led_blue",
+            "used_funct": "exact_func"
+        },
+        "Key-BTN_EAST": {
+            "return_name" : "led_red",
+            "used_funct": "exact_func"
+        },
+        "Absolute-ABS_X": {
+            "description": "Works in conjunction with Absolute-ABS_Y controller axis. Utilizing XYfunct, it controls Left and Right driver wheels. XYfunct requires the same return_name to correlate with the other controller axis. It will return {'return_name': {'return_name_Left': output_range, 'return_name_Right': output_range } }. The max_turn_LR pair must be identical for both axes.",
+            "ctrl_range": {"min": -32768,
+                        "max": 32768},
+            "output_range": {"min": -1,
+                            "max": 1},
+            "return_name" : "wheels",
+            "used_funct": "XYfunct",
+            "XYfunct_axis": "X",
+            "max_turn_LR": [1, 1],
+            "return_only_value": true
+        },
+        "Absolute-ABS_Y": {
+            "description": "Works in conjunction with Absolute-ABS_X controller axis. Utilizing XYfunct, it controls Left and Right driver wheels. XYfunct requires the same return_name to correlate with the other controller axis. It will return {'return_name': {'return_name_Left': output_range, 'return_name_Right': output_range } }. The max_turn_LR pair must be identical for both axes.",
+            "ctrl_range": {"min": -32768,
+                        "max": 32768},
+            "output_range": {"min": -1,
+                            "max": 1},
+            "return_name" : "wheels",
+            "used_funct": "XYfunct",
+            "XYfunct_axis": "Y",
+            "max_turn_LR": [1, 1],
+            "return_only_value": true
+        }
+        }
+
+}

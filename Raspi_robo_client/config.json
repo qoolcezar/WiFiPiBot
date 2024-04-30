@@ -1,0 +1,14 @@
+{
+    "netgear_options": {
+        "_description": "enter address and port to server",
+        "address": "A.B.C.D",
+        "port": "58954",
+        "protocol": "tcp",
+        "logging": true,
+        "bidirectional_mode": true
+    },
+    "camera_config":{
+        "size": [640,480],
+        "format": "RGB888"
+    }
+}
